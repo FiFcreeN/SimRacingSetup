@@ -23,8 +23,7 @@ Create apps to use arduino uno as a interpreter for sim racing gadgets.
 
 Currently investigating how to read inputs from an UDP server in a sim racing game
 
-**FORZA GAMES**
-[https://github.com/nettrom/forza_motorsport] - repository with some porgrams to get data from the forza data out udp feature.
+**FORZA GAMES** - [https://github.com/nettrom/forza_motorsport] - repository with some porgrams to get data from the forza data out udp feature.
 
 
 ## Phisical components
