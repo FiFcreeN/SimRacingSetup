@@ -37,6 +37,6 @@ Currently investigating how to read inputs from an UDP server in a sim racing ga
 **Rev Lights** - 4 green LEDs, 4 yellow LEDs, 2 red LEDs, a 220 ohm resistor. Mounted into a black painted pine wood segment.
 
 **Button Box** - A set of 3 lever switches, 5 pushbuttons and a "normal" switch. Mounted on a black painted pine wood box.
-![ButtonBox diagram](assets/button_box_diagram.png)
+![ButtonBox diagram](button_box_diagram.png)
 
 **NOTE:** *I will not post any pictures because my craftsmanship is terrible :(*
