@@ -33,8 +33,10 @@ Currently investigating how to read inputs from an UDP server in a sim racing ga
 ## Phisical components
 
 **Handbrake** - a misc between Mecano parts, a wooden broomstick segment and a bycicle ruber handle and a pushbutton.
+![handbrake diagram](handbrake_diagram.png)
 
 **Rev Lights** - 4 green LEDs, 4 yellow LEDs, 2 red LEDs, a 220 ohm resistor. Mounted into a black painted pine wood segment.
+![revLights diagram](rev_lights_diagram.png)
 
 **Button Box** - A set of 3 lever switches, 5 pushbuttons and a "normal" switch. Mounted on a black painted pine wood box.
 ![ButtonBox diagram](button_box_diagram.png)
