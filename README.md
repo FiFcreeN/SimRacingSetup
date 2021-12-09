@@ -46,4 +46,14 @@ Create apps to use arduino uno as a interpreter for sim racing gadgets.
 
 *Handbrake and Rev Lights* - combine the two connections in the arduino.
 
-**NOTE:** *I will not post any pictures because my craftsmanship is terrible :(*
+**NOTE:** *I will not post any pictures because my craftsmanship is terrible :(*  
+
+## Configuring Forza Horizon 4 and 5 data out
+1. In the HUD options scroll down and tick "Data out" to on.
+2. Set the IP address to your computer's IP address (ipv4).
+3. Set the port to 5607.
+4. Start the python app (revLights.py or handbrake_revLights.py)
+5. Configure serial port*
+6. Enjoy
+
+\*IF YOU DONT KNOW WHICH PORT TO CHOSE, OPEN THE APP WITHOU CONNECTING ARDUINO TO THE USB PORT, THEN CONNECT IT AND OPEN THE APP. CHOSE THE PORT THAT SHOWED UP.
