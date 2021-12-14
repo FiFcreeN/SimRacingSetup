@@ -31,6 +31,7 @@ Create apps to use arduino uno as a interpreter for sim racing gadgets.
 ## References
 
 **FORZA GAMES** - [Repo Link](https://github.com/nettrom/forza_motorsport) - repository with some porgrams to get data from the forza data out udp feature.
+**PROJECT CARS** - (*under investigation*) [Repo Link](https://github.com/jamesremuscat/pcars) - repository with some programs to get data from the pc's games.
 
 
 ## Phisical components
