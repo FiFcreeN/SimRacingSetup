@@ -36,16 +36,20 @@ Create apps to use arduino uno as a interpreter for sim racing gadgets.
 
 ## Phisical components
 
-**Handbrake** - a misc between Mecano parts, a wooden broomstick segment and a bycicle ruber handle and a pushbutton.  
+### Handbrake
+A misc between Mecano parts, a wooden broomstick segment and a bycicle ruber handle and a pushbutton.  
 ![handbrake diagram](handbrake_diagram.png)  
 
-**Rev Lights** - 4 green LEDs, 4 yellow LEDs, 2 red LEDs, a 220 ohm resistor. Mounted into a black painted pine wood segment.  
+### Rev Lights
+4 green LEDs, 4 yellow LEDs, 2 red LEDs, a 220 ohm resistor. Mounted into a black painted pine wood segment.  
 ![revLights diagram](rev_lights_diagram.png)  
 
-**Button Box** - A set of 3 lever switches, 5 pushbuttons and a "normal" switch. Mounted on a black painted pine wood box.  
+### Button Box
+A set of 3 lever switches, 5 pushbuttons and a "normal" switch. Mounted on a black painted pine wood box.  
 ![ButtonBox diagram](button_box_diagram.png)  
   
-**Handbrake and Rev Lights** - combine the two connections in the arduino.
+### Handbrake and Rev Lights
+Combine the two connections in the arduino.  
 
 **NOTE:** *I will not post any pictures because my craftsmanship is terrible :(*  
 
