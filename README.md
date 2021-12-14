@@ -44,8 +44,8 @@ Create apps to use arduino uno as a interpreter for sim racing gadgets.
 
 **Button Box** - A set of 3 lever switches, 5 pushbuttons and a "normal" switch. Mounted on a black painted pine wood box.  
 ![ButtonBox diagram](button_box_diagram.png)  
-
-*Handbrake and Rev Lights* - combine the two connections in the arduino.
+  
+**Handbrake and Rev Lights** - combine the two connections in the arduino.
 
 **NOTE:** *I will not post any pictures because my craftsmanship is terrible :(*  
 
