@@ -2,6 +2,7 @@ import sys
 import glob
 import serial
 import keyboard
+import json
 
 from fdp import *
 import socket
@@ -41,6 +42,37 @@ def serial_ports():
     return result
 
 
+def portsCom():
+    ports = serial_ports()
+
+    p = ""
+    for port in ports:
+        p += port + "\n"
+
+
+    #select the serial port
+    loop = True
+    while loop:
+        port = input("Choose a serial port:\n%s\n\n>>>" % (p))
+        if port not in ports:
+            print("Invalid choice!")
+            continue
+        loop = False
+
+    #create the config file with the selected port
+    try:
+        with open("settings.json", "w") as f:
+            f.write(json.dumps({"port":port}, indent=4))
+
+    except:
+        print("ERROR: Impossible to create configuration file!")
+        return port
+
+    print("Created a configuration file: settings.json")
+
+    return port
+
+
 def main(args):
     """main func
 
@@ -52,13 +84,6 @@ def main(args):
 
     print("Program started!")
 
-    ports = serial_ports()
-
-    p = ""
-    for port in ports:
-        p += port + "\n"
-
-
     #configure ports and sockets
     UDP_PORT = 5607
 
@@ -67,15 +92,14 @@ def main(args):
 
     params = ForzaDataPacket.get_props(packet_format="fh4")
 
+    try:
+        with open("settings.json", "r") as f:
+            config = json.loads(f.read())
+        port = config["port"]
+    except:
+        print("No configuration detected.")
+        port = portsCom()
 
-    #select the serial port
-    loop = True
-    while loop:
-        port = input("Choose a serial port:\n%s\n\n>>>" % (p))
-        if port not in ports:
-            print("Invalid choice!")
-            continue
-        loop = False
 
 
     #create comunication channel

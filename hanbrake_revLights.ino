@@ -30,75 +30,97 @@ void setup() {
 }
 
 void loop() {
-  //tiny delay for the serial port reading
-  delay(5);
 
-  //read the serial port STRING FORMAT TO PARSE: CURR_RPM/MAX_RPM/MIN_RPM
-  if (Serial.available()) {
-    stringRead = Serial.readStringUntil('\n');
-  }
+  startAnimation();
 
-  //turn off the lights
-  else {
-    stringRead = "0/0";
-  }
 
-  //reset the indexes of the slashes on the string
-  slash = 0;
+  while (true) {
+    //tiny delay for the serial port reading
+    delay(5);
 
-  //get the substring indexes
-  for (int i = 0; stringRead[i] != '\0'; ++i) {
-
-    //get the slashes on the srting rpm/max/min position
-    if (stringRead[i] == '/') {
-      slash = i;
-      break;
+    //read the serial port STRING FORMAT TO PARSE: CURR_RPM/MAX_RPM/MIN_RPM
+    if (Serial.available()) {
+      stringRead = Serial.readStringUntil('\n');
     }
-  }
 
-  //define each param of rpm necessary to light the leds
-  rpm[0] = stringRead.substring(0, slash).toInt();
-  rpm[1] = stringRead.substring(slash + 1).toInt();
+    //turn off the lights
+    else {
+      stringRead = "0/0";
+    }
 
-  //light up the leds with the given info
-  rpmLeds(rpm[0], rpm[1]);
+    //reset the indexes of the slashes on the string
+    slash = 0;
 
+    //get the substring indexes
+    for (int i = 0; stringRead[i] != '\0'; ++i) {
 
-
-  // read the state of the switch into a local variable:
-  int reading = !digitalRead(buttonPin);
-
-  // check to see if you just pressed the button
-  // (i.e. the input went from LOW to HIGH), and you've waited long enough
-  // since the last press to ignore any noise:
-
-  // If the switch changed, due to noise or pressing:
-  if (reading != lastButtonState) {
-    // reset the debouncing timer
-    lastDebounceTime = millis();
-  }
-
-  if ((millis() - lastDebounceTime) > debounceDelay) {
-    // whatever the reading is at, it's been there for longer than the debounce
-    // delay, so take it as the actual current state:
-
-    // if the button state has changed:
-    if (reading != buttonState) {
-      buttonState = reading;
-
-      // only toggle the LED if the new button state is HIGH
-      if (buttonState == HIGH) {
-        Serial.print("X\n");
-      }
-      else {
-        Serial.print("Y\n");
+      //get the slashes on the srting rpm/max/min position
+      if (stringRead[i] == '/') {
+        slash = i;
+        break;
       }
     }
+
+    //define each param of rpm necessary to light the leds
+    rpm[0] = stringRead.substring(0, slash).toInt();
+    rpm[1] = stringRead.substring(slash + 1).toInt();
+
+    //light up the leds with the given info
+    rpmLeds(rpm[0], rpm[1]);
+
+
+
+    // read the state of the switch into a local variable:
+    int reading = !digitalRead(buttonPin);
+
+    // check to see if you just pressed the button
+    // (i.e. the input went from LOW to HIGH), and you've waited long enough
+    // since the last press to ignore any noise:
+
+    // If the switch changed, due to noise or pressing:
+    if (reading != lastButtonState) {
+      // reset the debouncing timer
+      lastDebounceTime = millis();
+    }
+
+    if ((millis() - lastDebounceTime) > debounceDelay) {
+      // whatever the reading is at, it's been there for longer than the debounce
+      // delay, so take it as the actual current state:
+
+      // if the button state has changed:
+      if (reading != buttonState) {
+        buttonState = reading;
+
+        // only toggle the LED if the new button state is HIGH
+        if (buttonState == HIGH) {
+          Serial.print("X\n");
+        }
+        else {
+          Serial.print("Y\n");
+        }
+      }
+    }
+
+    // save the reading. Next time through the loop, it'll be the lastButtonState:
+    lastButtonState = reading;
+
+  }
+}
+
+/*
+ * Turns on all the leds to check if they are working when the program starts
+ */
+void startAnimation() {
+  //animation to check led functioning
+  for (int i = 2; i < LEDS; ++i) {
+    digitalWrite(i, HIGH);
+    delay(100);
   }
 
-  // save the reading. Next time through the loop, it'll be the lastButtonState:
-  lastButtonState = reading;
-
+  for (int i = LEDS - 1; i > 1; --i) {
+    digitalWrite(i, LOW);
+    delay(100);
+  }
 }
 
 
