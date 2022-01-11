@@ -22,6 +22,7 @@ Create apps to use arduino uno as a interpreter for sim racing gadgets.
 ```handbrake_revLights.ino```  - can be uploaded to a arduino (uno). Used to light a series of LEDs connected from pin 2 to 11 and to read the state of a button (INPUT_PULLUP enabled) connected on pin 13.  
 ```handbrake_revLights.py``` - used to select the serial port on which the arduino is connected. Reads data from the arduino and presses "p" key on the keyboard. Currently the program reads data from Forza Horizon 4 and 5 and lights 10 LEDs illustrating the car's engine rpm.  
 ```fdp.py``` - Class to interpret information outputed from Forza Horizon data out feature.  
+```pcars folder``` - Package with Project cars's support class and methods.
 
 ### BUTTON BOX Files
 ```buttonBox.ino``` - can be uploaded to arduino (uno). Used to read the state of a series of buttons and switches and write their vaues on the serial channel.  
@@ -31,7 +32,7 @@ Create apps to use arduino uno as a interpreter for sim racing gadgets.
 ## References
 
 **FORZA GAMES** - [Repo Link](https://github.com/nettrom/forza_motorsport) - repository with some porgrams to get data from the forza data out udp feature.  
-**PROJECT CARS** - (*under investigation*) [Repo Link](https://github.com/jamesremuscat/pcars) - repository with some programs to get data from the pc's games.  
+**PROJECT CARS** - [Repo Link](https://github.com/jamesremuscat/pcars) - repository with some programs to get data from the PC's games.  
 
 
 ## Phisical components
