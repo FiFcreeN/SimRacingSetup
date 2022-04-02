@@ -4,6 +4,9 @@ import serial
 import keyboard
 from tkinter import *
 
+from fdp import *
+import socket
+
 
 def serial_ports():
     """Takes a list of the available serial ports
@@ -56,6 +59,16 @@ def main(args):
     for port in ports:
         p += port + "\n"
 
+
+    #configure ports and sockets
+    UDP_PORT = 5000
+
+    server_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    server_socket.bind(('', UDP_PORT))
+
+    params = ForzaDataPacket.get_props(packet_format="fh4")
+
+
     #select the serial port
     loop = True
     while loop:
@@ -69,20 +82,22 @@ def main(args):
     #create comunication channel
     arduino = serial.Serial(port=port, baudrate=9600, timeout=.1)
 
-   controll = False
-	#read the arduino serial inputs
+    print("Successfully created communication channel on port " + port)
+
+    #send rpm data to arduino
     while True:
-        s = arduino.readline().strip()
-        if (s==b'X'):
-            controll = True
-        elif (s==b'Y'):
-            controll = False
+
+        try:
+            message, address = server_socket.recvfrom(1024)
+            fdp = ForzaDataPacket(message, packet_format = "fh4")
+            
+            rpm_values = fdp.to_list(params)[2:5]
+            rpm = "%d/%d\n" % (rpm_values[2], rpm_values[0])
         
-		#press "p" key on the keyboard
-        if controll:
-            keyboard.press('p')
-        else:
-            keyboard.release('p')
+        except:
+            continue
+
+        arduino.write(bytes(rpm, 'utf-8'))
 
 
 
