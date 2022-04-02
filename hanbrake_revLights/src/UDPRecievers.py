@@ -8,10 +8,9 @@ def forzaUDP():
     from fdp import ForzaDataPacket
     import socket
 
-    #configure ports and sockets
-    UDP_PORT = 5607
 
     # create the udp sockets
+    UDP_PORT = 5607
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     server_socket.bind(('', UDP_PORT))
@@ -62,3 +61,42 @@ def pc2UDP():
             rpm = ""
 
         data_exchange_arduino(arduino, rpm)
+
+
+def f1_2021_UDP():
+    from f1_2021 import telemetry, header
+    import socket
+
+    # stream
+    obj_header = header.Header()
+    obj_telemetry = telemetry.PacketCarTelemetryData()
+
+    # create the udp sockets
+    UDP_PORT = 5607
+    server_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    server_socket.bind(('', UDP_PORT))
+
+    # connect to arduino
+    arduino = connect_arduino(load_configs())
+
+
+    while True:
+        # recieve data
+        data = server_socket.recv(2048)
+
+        # unpack data
+        if data:
+            obj_header.unpack_struct(obj_header.packet_format, data)
+
+            if obj_header.m_packetId == 6:
+                packet_format = obj_header.packet_format + obj_telemetry.packet_format
+                obj_telemetry.unpack_struct(packet_format, data)
+
+            # convert the engine rpm
+            rev_lights_percent = obj_telemetry.m_carTelemetryData[obj_header.m_playerCarIndex].m_revLightsPercent.value
+
+            data_exchange_arduino(arduino, "%d/100\n" % (rev_lights_percent))
+
+
+

@@ -45,7 +45,7 @@ def connect_arduino(port: str):
         port (str): the port to connect
     """
     #create comunication channel
-    arduino = serial.Serial(port=port, baudrate=9600, timeout=.01)
+    arduino = serial.Serial(port=port, baudrate=9600, timeout=0)
 
     print("Successfully created communication channel on port " + port)
 
