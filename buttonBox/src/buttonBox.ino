@@ -12,8 +12,8 @@ void setup() {
   Serial.begin(9600);
   
   //setup the led pins
-  pinMode(2, OUTPUT);
-  pinMode(9, OUTPUT);
+  pinMode(12, OUTPUT);
+  pinMode(13, OUTPUT);
   
   //setup the button pins (3 -> 13)
   for (int i = 3; i < 13; ++i){
